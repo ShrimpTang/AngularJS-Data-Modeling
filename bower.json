@@ -1,0 +1,22 @@
+{
+  "name": "data-modeling",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "ShrimpTang <google711tang>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "angular-mocks": "~1.4.7"
+  }
+}
