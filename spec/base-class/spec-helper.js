@@ -3,17 +3,10 @@
  */
 var Mocks, BaseClass, Post;
 beforeEach(function () {
-    module('BaseClass','Mocks');
-    inject(function (_BaseClass_, _Mocks_) {
-        BaseClass = _BaseClass_;
-        Mocks = _Mocks_;
+    module('BaseClass', 'Mocks');
+    inject(function ($injector) {
+        BaseClass = $injector.get('BaseClass');
+        Mocks = $injector.get('Mock');
         Post = Mocks.Post;
     })
 });
-//beforeEach(module('BaseClass'));
-//beforeEach(module('Mocks'));
-//beforeEach(inject(function (_BaseClass_, _Mocks_) {
-//    BaseClass = _BaseClass_;
-//    Mocks = _Mocks_;
-//    Post = Mocks.Post;
-//}));
