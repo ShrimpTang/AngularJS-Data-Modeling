@@ -7,7 +7,7 @@ describe('BaseClass', function () {
     describe('Inheritance ', function () {
         beforeEach(function () {
             Post.inherits(SomeBaseClass);
-            function SomeBaseClass(attributes){
+            function SomeBaseClass(attributes) {
                 var _constructor = this;
                 var _prototype = _constructor.prototype;
                 _constructor.new = function (attributes) {
@@ -27,11 +27,57 @@ describe('BaseClass', function () {
             var post = Post.new({});
             expect(post.$save).toBeDefined();
         });
-        //it('afsd', function () {
-        //    expect(Post).toBeDefined();
-        //});
-        //it('work2s', function () {
-        //    expect(1).toEqual(1);
-        //});
+    });
+
+    describe('Extension', function () {
+        var post ;
+        beforeEach(function () {
+            Post.extend(Postable);
+            Post.include(Postable);
+            function Postable() {
+                this.posted = true;
+                this.post = function () {
+                }
+                Object.defineProperty(this, 'poster', {
+                    get: function () {
+                        return 'me';
+                    }
+                })
+                this.__posted = true;
+                this.__post = function () {
+
+                }
+                Object.defineProperty(this, '__poster', {
+                    get: function () {
+                        return 'me';
+                    }
+                });
+            }
+            post = Post.new({});
+        });
+        it('adds properties from the mixin to the class', function () {
+            expect(Post.posted).toBeTruthy();
+        });
+
+        it('adds properties from the mixin to the class', function () {
+            expect(Post.post).toBeDefined();
+        });
+
+        it('adds defineProperty from the mixin to the class', function () {
+            expect(Post.poster).toEqual('me');
+        });
+
+
+        it('adds properties from the mixin to the class', function () {
+            expect(post.posted).toBeTruthy();
+        });
+
+        it('adds properties from the mixin to the class', function () {
+            expect(post.post).toBeDefined();
+        });
+
+        it('adds defineProperty from the mixin to the class', function () {
+            expect(post.poster).toEqual('me');
+        });
     });
 });
